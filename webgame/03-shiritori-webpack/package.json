@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack"
+    "dev": "webpack-dev-server --hot"
   },
   "author": "Jione Eu",
   "license": "ISC",
@@ -19,7 +19,10 @@
     "@babel/preset-react": "^7.10.4",
     "babel": "^6.23.0",
     "babel-loader": "^8.1.0",
+    "chokidar": "^3.4.2",
+    "react-hot-loader": "^4.12.21",
     "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
