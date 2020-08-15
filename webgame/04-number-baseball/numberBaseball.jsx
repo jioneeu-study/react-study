@@ -10,7 +10,7 @@ function getNumbers() {
     return array;
 }
 
-const NumberBaseball = () => {
+const NumberBaseball = React.memo(function NumberBaseball (props) {
     const [result, setResult] = useState('');
     const [value, setValue] = useState('');
     const [answer, setAnswer] = useState(getNumbers());
@@ -79,6 +79,7 @@ const NumberBaseball = () => {
             </ol>
         </>
     );
-};
+});
+
 //module.exports = NumberBaseball; // not necessarily same but for now, they're compatible
 export default NumberBaseball;
