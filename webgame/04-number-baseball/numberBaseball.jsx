@@ -22,7 +22,9 @@ const NumberBaseball = () => {
          
         if (value == answer.join('')) {
             setResult('Homerun');
-            setAttempts([...attempts, {attempt: value, result: 'Homerun!'}]);
+            setAttempts((prevAttempts) => {
+                return [...attempts, {attempt: value, result: 'Homerun!'}]
+            });
             alert("Congrats! Restarting the game");
             setValue('');
             setAnswer(getNumbers());
@@ -47,9 +49,9 @@ const NumberBaseball = () => {
                     }
                 }
                 setValue('');
-                setAttempts(
-                    [...attempts, {attempt: value, result: `${strike} strike(s), ${ball} ball(s)`}]
-                );
+                setAttempts((prevAttempts) => {
+                    return [...attempts, {attempt: value, result: `${strike} strike(s), ${ball} ball(s)`}]
+                });
             }
         }
     }
