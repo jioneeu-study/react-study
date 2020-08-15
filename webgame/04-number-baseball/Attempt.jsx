@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { memo } from 'react';
 
-const Attempt = ({value}) => {
+const Attempt = memo(({value}) => {
     return (
         <li> 
             <div>
@@ -11,6 +11,6 @@ const Attempt = ({value}) => {
             </div>
         </li>
     )
-};
+});
 
 export default Attempt;
