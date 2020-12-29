@@ -21,16 +21,14 @@
             }
 
             render() {
-                return <button type="submit" onClick={() => { this.setState({ like: !this.state.like }) }}>
+                return <button type="submit" onClick={() => { this.setState({like: !this.state.like }) }}>
                     {this.state.like ? 'Liked' : 'Like'}
                 </button>;
-                // JSX -> JS + XML 
             }
         }
     </script>
 
     <script type="text/babel">
-        // ReactDOM.render(e(LikeButton), document.querySelector('#root'));
         ReactDOM.render(
             <div>
                 <LikeButton />
