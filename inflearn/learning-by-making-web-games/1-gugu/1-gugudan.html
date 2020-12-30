@@ -31,18 +31,24 @@
                 let answer = a * b;
 
                 if (parseInt(this.state.value) === answer) {
-                    this.setState({
-                        first: Math.ceil(Math.random() * 20),
-                        second: Math.ceil(Math.random() * 20),
-                        value: '',
-                        result: <div>CORRECT! <br/> {a} x {b} is {this.state.value}</div>,
+                    this.setState((prevState)=> {
+                        return {
+                            first: Math.ceil(Math.random() * 20),
+                            second: Math.ceil(Math.random() * 20),
+                            value: '',
+                            result: <div>CORRECT! <br/> {a} x {b} is {prevState.value}</div>,
+                        };
                     });
                 } else {
-                    this.setState({
-                        value: '',
-                        result: <div>WRONG! <br /> {a} x {b} is not equal to {+this.state.value}</div>,
-                    })
+                    this.setState((prevState) => {
+                        return {    
+                            value: '',
+                            result: <div>WRONG! <br /> {a} x {b} is not equal to {+prevState.value}</div>,
+                        };
+                    });
                 }
+
+                this.input.focus();
             }
 
             onChange = (e) => {
@@ -51,16 +57,18 @@
                 });
             }
 
+            input;
+
             render() {
                 return (
-                    <div>
+                    <React.Fragment>
                         <div>{this.state.first} times {this.state.second} is?</div>
                         <form onSubmit={this.onSubmit}>
-                            <input type="number" value={this.state.value} onChange={this.onChange} />
+                            <input ref={(c) => { this.input = c; }} type="number" value={this.state.value} onChange={this.onChange} />
                             <button>Check!</button>
                         </form>
                         <div>{this.state.result}</div>
-                    </div>
+                    </React.Fragment>
                 );
             };
         }
