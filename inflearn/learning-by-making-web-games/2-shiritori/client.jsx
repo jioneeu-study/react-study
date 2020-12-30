@@ -1,5 +1,5 @@
 import React from 'react';
 import { render } from 'react-dom';
-import Shiritori from './Shiritori';
+import Gugudan from './Gugudan';
 
-render(<Shiritori />, document.querySelector('#root'));
+render(<Gugudan />, document.querySelector('#root'));
