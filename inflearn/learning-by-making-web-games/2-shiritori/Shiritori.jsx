@@ -1,7 +1,7 @@
 import React from 'react';
 const { Component } = React;
 
-class Shiritori extends Component {
+class Gugudan extends Component {
     state = {
         first: Math.ceil(Math.random() * 20),
         second: Math.ceil(Math.random() * 20),
@@ -50,4 +50,4 @@ class Shiritori extends Component {
     };
 }
 
-export default Shiritori;
+export default Gugudan;
