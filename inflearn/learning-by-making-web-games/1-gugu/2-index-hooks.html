@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gugudan</title>
+    <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin></script>
+    <script src="https://unpkg.com/babel-standalone/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div>
+    <script type="text/babel">
+        const Gugudan = () => {
+            const [first, setFirst] = React.useState(Math.ceil(Math.random() * 9));
+            const [second, setSecond] = React.useState(Math.ceil(Math.random() * 9));
+            const [value, setValue] = React.useState('');
+            const [result, setResult] = React.useState('');
+            const inputRef = React.useRef(null);
+
+            const onChangeInput = (e) => {
+                setValue(e.target.value);
+            }
+
+            const onSubmitForm = (e) => {
+                e.preventDefault();
+
+                let a = parseInt(first);
+                let b = parseInt(second);
+                let answer = a * b;
+
+                if (parseInt(value) === answer) {
+                    setFirst(Math.ceil(Math.random() * 20));
+                    setSecond(Math.ceil(Math.random() * 20));
+                    setValue('');
+                    setResult(<div>CORRECT! <br/> {a} x {b} is {value}</div>);
+                } else {
+                    setValue('');
+                    setResult(<div>WRONG! <br /> {a} x {b} is not equal to {+value}</div>);
+                }
+
+                inputRef.current.focus();
+            }
+
+            return (
+                <React.Fragment>
+                    <div>{first} times {second} is?</div>
+                    <form onSubmit={onSubmitForm}>
+                        <input ref={inputRef} type="number" value={value} onChange={onChangeInput} />
+                        <button>Check!</button>
+                    </form>
+                    <div>{result}</div>
+                </React.Fragment>
+            )
+        }
+    </script>
+
+    <script type="text/babel">
+        ReactDOM.render(<Gugudan />, document.querySelector('#root'));   
+    </script>
+</body>
+
+</html>
