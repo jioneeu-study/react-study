@@ -13,33 +13,40 @@ const Shiritori = () => {
     };
 
     const onClickButton = () => {
-        setResult('...checking');
+        if (currWord[0] != prevWord[prevWord.length - 1]) {
+            setResult(`'${prevWord[prevWord.length - 1]}'(으)로 시작하는 단어를 입력해주세요.`);
+            return;
+        }
+        setResult('...확인 중');
         const t = Dictionary.search(currWord);
         t.then((val) => {
-            console.dir(val.data);
             let json = parser.parse(val.data);
+            /** @debugstart */
+            console.log("json: ");
             console.dir(json);
+            /* @debugend */
+
             const wordTotal = json.channel.total;
 
             if (wordTotal === 0) {
-                setResult('Wrong!');
+                setResult(`'${currWord}' - [표준국어대사전]에 기재되어 있지 않습니다.`);
             } else {
                 const item = json.channel.item;
                 if (item.sense) {
-                    console.log(item.sense.definition);
+                    setResult(`'${currWord}' - ${item.sense.definition}`);
                 } else {
+                    let str = `${currWord} -> \n`;
                     item.forEach(element => {
-                        console.log(element.sense.definition);
+                        str += (element.sense.definition + '\n');
                     });
+
+                    setResult(str);
                 }
-                console.log('currWord: ' + currWord);
-                if (!currWord || currWord === '') {
-                    setPrevWord('버그');
-                } else {
-                    setPrevWord(currWord);
-                }
+                const TEMP = prevWord;
+
+                setPrevWord(`${TEMP} -> ${currWord}`);
+
                 setCurrWord('');
-                setResult('Correct!');
             }
         })
     }
