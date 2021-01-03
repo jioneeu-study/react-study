@@ -1,4 +1,5 @@
 const path = require('path');
+const webpackRefreshPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
 
 module.exports = {
     name: 'shiritori-setting',
@@ -17,13 +18,26 @@ module.exports = {
             test: /\.jsx?/,
             loader: 'babel-loader',
             options: {
-                presets: ['@babel/preset-react']
+                presets: ['@babel/preset-react'],
+                plugins: [
+                    'react-refresh/babel'
+                ],
             }
-        }]
+        }],
     },
+
+    plugins: [
+        new webpackRefreshPlugin(),
+    ],
 
     output: { // output
         path: path.join(__dirname, 'dist'),
         filename: 'app.js',
+        publicPath: '/dist/',
     },
+
+    devServer: {
+        publicPath: '/dist/',
+        hot: true,
+    }
 };
