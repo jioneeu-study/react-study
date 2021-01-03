@@ -1,18 +1,21 @@
 import React from 'react';
 import parser from 'fast-xml-parser';
+const { useState, useRef } = React;
 
 const Dictionary = require('./dictionary');
 
 const Shiritori = () => {
-    const [prevWord, setPrevWord] = React.useState('유버그');
-    const [currWord, setCurrWord] = React.useState('');
-    const [result, setResult] = React.useState('');
+    const [prevWord, setPrevWord] = useState('유버그');
+    const [currWord, setCurrWord] = useState('');
+    const [result, setResult] = useState('');
+    const inputRef = useRef(null);
 
     const onChangeInput = (e) => {
         setCurrWord(e.target.value);
     };
 
     const onClickButton = () => {
+        inputRef.current.focus();
         if (currWord[0] != prevWord[prevWord.length - 1]) {
             setResult(`'${prevWord[prevWord.length - 1]}'(으)로 시작하는 단어를 입력해주세요.`);
             return;
@@ -45,7 +48,6 @@ const Shiritori = () => {
                 const TEMP = prevWord;
 
                 setPrevWord(`${TEMP} -> ${currWord}`);
-
                 setCurrWord('');
             }
         })
@@ -56,7 +58,7 @@ const Shiritori = () => {
             <div>
                 <div id="prev">{prevWord}</div>
                 <div id="current">
-                    <input value={currWord} onChange={onChangeInput}></input>
+                    <input ref={inputRef} value={currWord} onChange={onChangeInput}></input>
                     <button onClick={onClickButton}>Check</button>
                 </div>
                 <div id="result">{result}</div>
