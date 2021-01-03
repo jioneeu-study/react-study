@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack",
+    "dev": "webpack serve --env development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Eubug",
@@ -12,9 +12,12 @@
   "devDependencies": {
     "@babel/core": "^7.12.10",
     "@babel/preset-react": "^7.12.10",
+    "@pmmmwh/react-refresh-webpack-plugin": "github:pmmmwh/react-refresh-webpack-plugin",
     "babel-loader": "^8.2.2",
+    "react-refresh": "^0.9.0",
     "webpack": "^5.11.1",
-    "webpack-cli": "^4.3.1"
+    "webpack-cli": "^4.3.1",
+    "webpack-dev-server": "^3.11.1"
   },
   "dependencies": {
     "axios": "^0.21.1",
